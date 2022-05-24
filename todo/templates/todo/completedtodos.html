@@ -1,0 +1,24 @@
+{% extends 'todo/base.html' %}
+
+
+{% block content %}
+
+Completed
+
+<ul>
+    {% for todo in todos %}
+    <li>
+        <p><a href="{% url 'viewtodo' todo.id %}">
+        {% if todo.important %}<b>{% endif %}{{ todo.title }}{% if todo.important %}</b>{% endif %}{% if todo.memo %}
+        - {{todo.memo}}{% endif %}
+            / Completed on: {{ todo.date_completed|date:'M j Y H:i' }}</p>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+<br>
+<a href="{% url 'currenttodos' %}">Return to Currently Active Todos</a>
+
+
+{% endblock %}
